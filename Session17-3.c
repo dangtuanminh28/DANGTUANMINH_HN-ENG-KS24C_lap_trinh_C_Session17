@@ -1,11 +1,11 @@
 #include <stdio.h>
-// Ham tinh do dai chuoi (khong dung strlen)
-int tinhDoDaiChuoi(char *str) {
-    int dem = 0;
-    while (*(str + dem) != '\0') {
-        dem++;
+// Ham tinh do dai chuoi
+	int tinhDoDaiChuoi(char *str) {
+    int count = 0;
+    while (*(str + count) != '\0') {
+        count++;
     }
-    return dem;
+    return count;
 }
 // Ham nhap chuoi
 void nhapChuoi(char *str) {
@@ -18,7 +18,7 @@ void nhapChuoi(char *str) {
     }
 }
 // Ham dao nguoc chuoi
-void daoNguocChuoi(char *str) {
+void swapleghth(char *str) {
     int len = tinhDoDaiChuoi(str);
     printf("Chuoi dao nguoc: ");
     for (int i = len - 1; i >= 0; i--) {
@@ -28,11 +28,11 @@ void daoNguocChuoi(char *str) {
 }
 // Ham dem so tu trong chuoi
 int demSoTu(char *str) {
-    int dem = 0, trongTu = 0;
+    int count = 0, trongTu = 0;
     while (*str != '\0') {
         if (*str != ' ') {
             if (trongTu == 0) {
-                dem++;
+                count++;
                 trongTu = 1;
             }
         } else {
@@ -40,7 +40,7 @@ int demSoTu(char *str) {
         }
         str++;
     }
-    return dem;
+    return count;
 }
 // Ham so sanh do dai hai chuoi
 void soSanhChuoi(char *str1, char *str2) {
@@ -80,8 +80,8 @@ void noiChuoi(char *str1, char *str2) {
     printf("Chuoi sau khi noi: %s\n", str1);
 }
 int main() {
-    char chuoi1[200] = "", chuoi2[100] = "";
-    int luaChon;
+    char leghth1[200] = "", leghth2[100] = "";
+    int choice;
     do {
         printf("\nMENU\n");
         printf("1. Nhap vao chuoi\n");
@@ -92,30 +92,30 @@ int main() {
         printf("6. Nhap chuoi khac va noi vao chuoi ban dau\n");
         printf("7. Thoat\n");
         printf("Lua chon cua ban: ");
-        scanf("%d", &luaChon);
+        scanf("%d", &choice);
         getchar(); // Loai bo ky tu xuong dong
-        switch (luaChon) {
+        switch (choice) {
             case 1:
-                nhapChuoi(chuoi1);
+                nhapChuoi(leghth1);
                 break;
             case 2:
-                daoNguocChuoi(chuoi1);
+                swapleghth(leghth1);
                 break;
             case 3:
-                printf("So tu trong chuoi: %d\n", demSoTu(chuoi1));
+                printf("So tu trong chuoi: %d\n", demSoTu(leghth1));
                 break;
             case 4:
                 printf("Nhap chuoi moi: ");
-                nhapChuoi(chuoi2);
-                soSanhChuoi(chuoi1, chuoi2);
+                nhapChuoi(leghth2);
+                soSanhChuoi(leghth1, leghth2);
                 break;
             case 5:
-                inHoaChuoi(chuoi1);
+                inHoaChuoi(leghth1);
                 break;
             case 6:
                 printf("Nhap chuoi can noi: ");
-                nhapChuoi(chuoi2);
-                noiChuoi(chuoi1, chuoi2);
+                nhapChuoi(leghth2);
+                noiChuoi(leghth1, leghth2);
                 break;
             case 7:
                 printf("Thoat chuong trinh.\n");
@@ -123,7 +123,6 @@ int main() {
             default:
                 printf("Lua chon khong hop le, vui long thu lai.\n");
         }
-    } while (luaChon != 7);
+    } while (choice != 7);
     return 0;
 }
-
